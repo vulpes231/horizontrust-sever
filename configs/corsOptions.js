@@ -1,8 +1,7 @@
 const allowedOrigins = [
   "https://vestorr.netlify.app",
   "http://localhost:5173",
-  "https://vestor.markets",
-  "https://admin.vestor.markets",
+  "https://horizontrust.netlify.app",
 ];
 
 const corsOptions = {
