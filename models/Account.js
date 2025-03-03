@@ -28,6 +28,18 @@ const accountSchema = new Schema(
   }
 );
 
+accountSchema.statics.getUserAccounts = async function (userId) {
+  try {
+    const userAccounts = await Account.find({ owner: userId });
+    if (!userAccounts) {
+      throw new Error("User has no account");
+    }
+    return userAccounts;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const Account = mongoose.model("Account", accountSchema);
 
 module.exports = Account;
