@@ -13,9 +13,13 @@ const accountSchema = new Schema(
       type: String,
     },
     balance: {
-      type: String,
+      type: Number,
+      default: 0,
     },
     username: {
+      type: String,
+    },
+    accountNum: {
       type: String,
     },
   },
