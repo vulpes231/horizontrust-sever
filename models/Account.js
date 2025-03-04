@@ -42,7 +42,7 @@ accountSchema.statics.getUserAccounts = async function (userId) {
 
 accountSchema.statics.getAccountInfoByNo = async function (accounNum) {
   try {
-    const account = await Account.findOne({ accounNum });
+    const account = await Account.findOne({ accountNum: accounNum });
     if (!account) {
       throw new Error("User has no account");
     }
