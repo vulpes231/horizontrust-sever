@@ -40,6 +40,18 @@ accountSchema.statics.getUserAccounts = async function (userId) {
   }
 };
 
+accountSchema.statics.getAccountInfoByNo = async function (accounNum) {
+  try {
+    const account = await Account.findOne({ accounNum });
+    if (!account) {
+      throw new Error("User has no account");
+    }
+    return account;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const Account = mongoose.model("Account", accountSchema);
 
 module.exports = Account;

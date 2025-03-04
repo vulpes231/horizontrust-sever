@@ -15,6 +15,44 @@ const createNewTrnx = async (req, res) => {
   }
 };
 
+const transferFunds = async (req, res) => {
+  const {
+    userId,
+    memo,
+    amount,
+    accountNum,
+    receiverAcct,
+    receiverRoutine,
+    type,
+  } = req.body;
+  if (
+    !userId ||
+    !memo ||
+    !amount ||
+    !accountNum ||
+    !type ||
+    receiverAcct ||
+    receiverRoutine
+  )
+    return res.status(400).json({ message: "Incomplete Data" });
+  try {
+    const trnxData = {
+      memo,
+      amount,
+      accountNum,
+      type,
+      receiverAcct,
+      receiverRoutine,
+    };
+
+    await Transaction.transfer(userId, trnxData);
+    res.status(201).json({ message: "Transaction created" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const fetchUserTrnx = async (req, res) => {
   const userId = req.userId;
   if (!userId) return res.status(400).json({ message: "Bad request!" });
@@ -43,4 +81,9 @@ const getTrnxByAccount = async (req, res) => {
   }
 };
 
-module.exports = { createNewTrnx, fetchUserTrnx, getTrnxByAccount };
+module.exports = {
+  createNewTrnx,
+  fetchUserTrnx,
+  getTrnxByAccount,
+  transferFunds,
+};
