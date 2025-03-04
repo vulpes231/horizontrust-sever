@@ -21,6 +21,7 @@ connectDB()
     app.use(verifyJWT);
     app.use("/account", require("./routes/account"));
     app.use("/transaction", require("./routes/trnx"));
+    app.use("/user", require("./routes/user"));
 
     app.listen(PORT, () => {
       console.log(`Server started on http://localhost:${PORT}`);

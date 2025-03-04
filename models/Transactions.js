@@ -14,6 +14,9 @@ const transactionSchema = new Schema(
     accountGroup: {
       type: String,
     },
+    accountNum: {
+      type: String,
+    },
     description: {
       type: String,
     },
@@ -21,6 +24,12 @@ const transactionSchema = new Schema(
       type: String,
     },
     status: {
+      type: String,
+    },
+    type: {
+      type: String,
+    },
+    customDate: {
       type: String,
     },
   },
@@ -57,7 +66,10 @@ transactionSchema.statics.createTransaction = async function (
     const newTrnx = {
       owner: user._id,
       amount: trnxData.amount,
+      type: trnxData.type,
+      customDate: trnxData.customDate,
       accountGroup: recipientAcct.group,
+      accountNum: recipientAcct.accountNum,
       username: user.username,
       status: "completed",
       description: trnxData.memo || "",
