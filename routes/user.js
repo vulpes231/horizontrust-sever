@@ -11,6 +11,6 @@ const router = Router();
 
 router.route("/").get(fetchUser).put(updateUser);
 router.route("/logout").put(logoutClient);
-router.route("/changepass").get(updatePassword);
+router.route("/changepass").post(updatePassword);
 
 module.exports = router;
